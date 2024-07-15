@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список медиафайлов</title>
+</head>
+<body>
+    <h1>Список медиафайлов</h1>
+    <ul>
+        {% for mediafile in mediafiles %}
+            <li>
+                <h2>{{ mediafile.title }}</h2>
+                {% if mediafile.media_type == 'image' %}
+                    <img src="{{ mediafile.file.url }}" alt="{{ mediafile.title }}" width="200">
+                {% elif mediafile.media_type == 'video' %}
+                    <video width="320" height="240" controls>
+                        <source src="{{ mediafile.file.url }}" type="video/mp4">
+                        Ваш браузер не поддерживает видео тег.
+                    </video>
+                {% endif %}
+                <p>Загружено: {{ mediafile.uploaded_at }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'mediafile_create' %}">Загрузить новый медиафайл</a><br>
+    <a href="{% url 'home_page' %}">Назад на главную</a>
+</body>
+</html>

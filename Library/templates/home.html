@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Книжная библиотека</title>
+</head>
+<body>
+    <h1>Добро пожаловать в Книжную библиотеку</h1>
+    <p>Это ваше приложение для управления книжной библиотекой.</p>
+    <a href="{% url 'book_list' %}">Просмотреть список книг</a><br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'book_create' %}">Добавить новую книгу</a><br>
+        <a href="{% url 'mediafile_create' %}">Добавить изображение</a><br>
+        <a href="{% url 'photo_list' %}">Просмотреть все файлы</a><br>
+
+<form action = '{% url "logout" %}' method = 'post'>
+        {% csrf_token %}
+        <button type = 'submit'>Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'signup' %}">Регистрация</a><br>
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+</body>
+</html>

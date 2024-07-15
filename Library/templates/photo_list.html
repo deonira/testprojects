@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список фотографий</title>
+</head>
+<body>
+    <h1>Список фотографий</h1>
+    <ul>
+        {% for photo in photos %}
+            <li>
+                <h2>{{ photo.title }}</h2>
+                <img src="{{ photo.file.url }}" alt="{{ photo.title }}" width="200">
+                <p>Загружено: {{ photo.uploaded_at }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home_page' %}">Назад на главную</a>
+</body>
+</html>

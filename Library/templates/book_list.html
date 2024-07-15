@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список книг</title>
+</head>
+<body>
+    <h1>Книги</h1>
+    <ul>
+        {% for book in books %}
+        <li>
+            <a href="{% url 'book_detail' book.pk %}">{{ book.title }} by {{ book.author }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% if page_obj.has_previous or page_obj.has_next %}
+    <nav>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number}}">предыдущая</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">следующая</a>
+        {% endif %}
+    </nav>
+    {% endif %}
+
+</body>
+</html>
